@@ -14,7 +14,8 @@ var countTime;
 var stop = false;
 
 // Toggle button's function.
-function toggleCron() {
+function toggleCron(isEnableSaveBtn) {
+    disabledSaveBtn();
     // User wants to stop the cron.
     if(stop) {
         // Update text content button.
@@ -26,7 +27,7 @@ function toggleCron() {
         // Update control variable.
         stop = false;
         // Enable save button.
-        enableSaveBtn();
+        if(isEnableSaveBtn) enableSaveBtn();
     } else {
         // Update text content button.
         actToggleBtn.textContent = "Stop";
@@ -76,18 +77,26 @@ function toggleCron() {
     }
 }
 
+function stopCron() {
+    stop = true;
+    toggleCron(false);
+}
+
+function checkValue() {
+    if(actCron.textContent !== "00:00:00") {
+        enableSaveBtn();
+    }
+}
+
 function toggleFocusActText() {
     var value = actText.value;
     if (value == "") {
-        actText.value = value.replace("", "Type here what are you doing...");
-        actText.style.fontStyle = "italic";
+        actText.value = value.replace("", "Type here what you are doing...");
         actText.style.color = "grey";
-    } else if(value == "Type here what are you doing...") {
-        actText.value = value.replace("Type here what are you doing...", "");
-        actText.style.fontStyle = "normal";
+    } else if(value == "Type here what you are doing...") {
+        actText.value = value.replace("Type here what you are doing...", "");
         actText.style.color = "black";
     } else {
-        actText.style.fontStyle = "normal";
         actText.style.color = "black";
     }
 }
@@ -96,6 +105,7 @@ function saveTime() {
     var newActivity = document.createElement("span");
     newActivity.classList.add("saved-activity");
     newActivity.style.display = "block";
+    newActivity.style.margin = "10px 0px";
     newActivity.style.padding = "5px";
     
     var activityText = document.createElement("span");
@@ -112,6 +122,8 @@ function saveTime() {
     savedActTimes.appendChild(newActivity);
     disabledSaveBtn();
     actCron.textContent = "00:00:00";
+    stop = true;
+    toggleCron();
 }
 
 function enableSaveBtn() {
@@ -126,10 +138,11 @@ function enableSaveBtn() {
 
 function disabledSaveBtn() {
     atcSaveBtn.disabled = true;
-    atcSaveBtn.style.backgroundColor = "transparent";
-    atcSaveBtn.style.border = "1px solid grey";
-    atcSaveBtn.style.borderRadius = "2.5px";
-    atcSaveBtn.style.color = "grey";
+    atcSaveBtn.style.border = "1px solid #d0d0d0";
+    atcSaveBtn.style.borderRadius = "3px";
+    atcSaveBtn.style.padding = "6px";
+    atcSaveBtn.style.backgroundColor = "#efefef";
+    atcSaveBtn.style.color = "#b0b0b0";
     atcSaveBtn.style.fontWeight = "normal";
     atcSaveBtn.style.cursor = "not-allowed";
 }
