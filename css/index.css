@@ -1,38 +1,52 @@
-#content {
+* {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #act-bar {
-    background-color: lightgrey;
-    padding: 10px;
-    box-shadow: 0.5px 0.5px 8px 0.1px rgb(51, 51, 51);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 25px 15px;
+    box-shadow: 0px 0px 20px 0.1px rgb(180, 180, 180);
 }
 
 #act-text {
-    width: 450px;
+    width: 75%;
     height: 25px;
-    padding: 2.5px 5px;
-    border: 1px solid black;
+    padding: 5px;
+    border: 0px solid transparent;
     border-radius: 2.5px;
-    font-size: 15px;
-    font-style: italic;
     color: grey;
+    font-size: 15px;
+}
+
+#act-text:focus {
+    outline: transparent;
 }
 
 #act-cron {
-    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
     text-align: center;
-    width: 100px;
 }
 
-#row-btn {
-    display: inline-block;
+#act-cron:hover, #act-cron:focus {
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 5px;
+    outline: transparent;
+}
+
+#row-btns {
+    width: 15%;
 }
 
 #act-toggle-btn, #act-save-btn {
-    width: 100px;
-    font-size: 15px;
     padding: 5px;
+    width: 45%;
+    font-size: 15px;
+    user-select: none;
 }
 
 #act-toggle-btn {
@@ -69,4 +83,9 @@
     border: 2px solid rgb(200, 200, 200);
     border-radius: 5px;
     display: inline-block;
+}
+
+#content #saved-act-times .day {
+    margin: 10px 0px;
+    font-weight: bold;
 }
